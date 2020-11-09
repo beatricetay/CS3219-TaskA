@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+
+    proxy:
+        image: nginx
+        volumes:
+            - ./nginxReverseProxy/nginx-config.conf:/etc/nginx/conf.d/default.conf
+        ports:
+            - 80:80
+
+    web-a:
+        build:
+            context: ./webA
+        ports:
+            - 5000:5000
+
+    web-b:
+        build:
+            context: ./webB
+        ports:
+            - 8000:8000
